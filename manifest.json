@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Matchplay Video Linker",
+  "version": "0.1.0",
+  "description": "Link timestamped YouTube videos to games on app.matchplay.events.",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://app.matchplay.events/*",
+    "https://api.matchplay.events/*",
+    "https://www.youtube.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Matchplay Video Linker (open a Matchplay tournament, then click)"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://app.matchplay.events/*"],
+      "js": ["lib/parse.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
